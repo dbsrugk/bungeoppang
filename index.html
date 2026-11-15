@@ -41,17 +41,29 @@ button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 .hud b{font-family:var(--display);font-size:16px;font-variant-numeric:tabular-nums;line-height:1.15}
 .hud .low b{color:var(--bad)}
 
-/* 손님 */
-.customers{flex:none;display:grid;grid-template-columns:1fr 1fr;gap:8px;min-height:86px}
-.cust{position:relative;display:flex;gap:8px;align-items:flex-start;background:var(--paper);border-radius:3px;padding:7px 9px 12px;min-width:0;animation:pop .25s ease-out;box-shadow:0 3px 8px rgba(0,0,0,.35);transform:rotate(-1deg)}
-.cust:nth-child(2){transform:rotate(1.2deg)}
-.cust.empty{background:rgba(255,255,255,.28);box-shadow:none;border:2px dashed rgba(40,36,44,.35);color:var(--ink);align-items:center;justify-content:center;font-family:var(--hand);font-size:19px;animation:none}
-.order{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+/* 손님: 포차 앞 겨울 거리. 손님 모형이 조리대 너머에 서서 말풍선으로 주문한다 */
+.awning{z-index:3}
+.awning::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:8px;background:repeating-linear-gradient(90deg,var(--awning) 0 14px,var(--awning-cream) 14px 28px);
+  -webkit-mask:radial-gradient(circle at 7px 0,#000 7px,transparent 7.6px) 0 0/14px 8px;mask:radial-gradient(circle at 7px 0,#000 7px,transparent 7.6px) 0 0/14px 8px}
+.customers{flex:none;display:grid;grid-template-columns:1fr 1fr;gap:8px;height:128px;margin-top:-10px;padding-top:12px;
+  background:radial-gradient(circle,#fff 1px,transparent 1.7px) 0 0/38px 34px,radial-gradient(circle,rgba(255,255,255,.65) 1px,transparent 1.6px) 19px 17px/46px 40px,linear-gradient(#222a44,#5a6590);
+  box-shadow:inset 0 -9px 0 #8a5f3e,inset 0 -11px 0 #2a211c}
+.cust{position:relative;display:flex;align-items:flex-end;gap:5px;min-width:0;height:100%;padding-bottom:9px;clip-path:inset(0 0 9px 0)}
+.cust .who{flex:none;width:58px;height:87px}
+.cust .who.kid{width:50px;height:75px}
+.cust.in .who{animation:walkin .35s ease-out}
+.cust.bye .who{animation:bye .7s ease-in forwards}
+.ch{display:block;width:100%;height:100%;overflow:visible}
+.bub{position:relative;flex:1;min-width:0;align-self:center;background:var(--paper);border:2px solid var(--ink);border-radius:10px;padding:5px 7px 10px;margin-bottom:12px;animation:pop .2s ease-out}
+.bub::before{content:"";position:absolute;left:-7px;bottom:10px;width:10px;height:10px;background:var(--paper);border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg)}
+.bub.say{flex:0 1 auto;padding:5px 9px 6px;font-family:var(--hand);font-size:18px;line-height:1.1;white-space:nowrap}
+.cust.empty{align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-family:var(--hand);font-size:17px;padding-bottom:16px}
+.order{display:flex;flex-direction:column;gap:3px;min-width:0}
 .chip{display:flex;align-items:center;gap:5px;font-weight:700;font-size:13px;line-height:1.2;white-space:nowrap}
 .chip i{flex:none;width:13px;height:13px;border-radius:50%;border:1.5px solid var(--ink);background:var(--c)}
 .chip.done{opacity:.35;text-decoration:line-through}
 .chip em{font-style:normal;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
-.pat{position:absolute;left:8px;right:8px;bottom:4px;height:4px;border-radius:2px;background:#e6dfd0;overflow:hidden}
+.pat{position:absolute;left:7px;right:7px;bottom:4px;height:4px;border-radius:2px;background:#e6dfd0;overflow:hidden}
 .pat i{display:block;height:100%;width:100%;background:var(--ok);transform-origin:left}
 
 /* 틀 */
@@ -119,11 +131,9 @@ button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 .mold.locked .next{display:none}
 .fill-btn.locked{opacity:.3;filter:grayscale(1)}
 .hud .met b{color:var(--ok)}
-.fig{flex:none;position:relative;display:block;width:26px;height:34px}
-.fig::before{content:"";position:absolute;left:5px;top:0;width:16px;height:16px;border-radius:50%;background:#f3d2b3;border:1.5px solid var(--ink)}
-.fig::after{content:"";position:absolute;left:1px;bottom:0;width:24px;height:17px;border-radius:9px 9px 3px 3px;background:var(--c);border:1.5px solid var(--ink)}
+.fig{flex:none;display:block;width:36px;height:54px}
 .talk{display:grid;gap:9px;margin:0 0 12px;text-align:left}
-.talk p{margin:0;display:grid;grid-template-columns:26px 1fr;gap:9px;align-items:start;line-height:1.45}
+.talk p{margin:0;display:grid;grid-template-columns:36px 1fr;gap:9px;align-items:start;line-height:1.45}
 .talk b{display:block;font-size:11px;color:var(--ink-soft)}
 .goal{margin:0 0 12px;padding:8px 10px;border-radius:8px;background:#f3ead6;font-weight:700;line-height:1.5}
 .goal small{display:block;font-weight:500;color:var(--ink-soft);font-size:12px}
@@ -138,14 +148,17 @@ button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 .shop small{display:block;color:var(--ink-soft);font-size:12px}
 .shop button{padding:7px 10px;border-radius:7px;background:var(--ink);color:var(--paper);font-weight:700;font-size:13px;white-space:nowrap}
 .shop button:disabled{opacity:.35}
+@keyframes walkin{from{transform:translateY(70px)}}
+@keyframes bye{30%{transform:translateY(-5px)}to{transform:translate(46px,0);opacity:0}}
 @keyframes pop{from{transform:scale(.85);opacity:0}}
 @keyframes flip{50%{transform:scaleY(.05)}}
 @keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
 @keyframes steam{0%{opacity:0;transform:translate(-50%,0) scale(.6)}25%{opacity:.8}100%{opacity:0;transform:translate(40%,-34px) scale(2.2)}}
 @keyframes rise{from{opacity:0;transform:translate(-50%,10px)}20%{opacity:1}to{opacity:0;transform:translate(-50%,-34px)}}
 @keyframes pour{0%{opacity:0;transform:rotate(0)}25%{opacity:1;transform:rotate(-28deg)}75%{opacity:1;transform:rotate(-28deg)}100%{opacity:0;transform:rotate(0)}}
-@media (max-height:640px){#app{gap:7px}.customers{min-height:78px}.fill-btn span.tub{max-height:40px}.pan-wrap{min-height:200px}}
-@media (prefers-reduced-motion:reduce){.ph img{transition:none}.mold.flip .ph,.mold.shake,.cust{animation:none}.steam{display:none}}
+@media (min-height:700px){.customers{height:158px}.cust .who{width:74px;height:111px}.cust .who.kid{width:64px;height:96px}.chip{font-size:14px}}
+@media (max-height:640px){#app{gap:7px}.customers{height:110px}.cust .who{width:50px;height:75px}.cust .who.kid{width:44px;height:66px}.fill-btn span.tub{max-height:40px}.pan-wrap{min-height:200px}}
+@media (prefers-reduced-motion:reduce){.ph img{transition:none}.mold.flip .ph,.mold.shake,.cust .who,.bub{animation:none}.steam{display:none}}
 </style>
 
 <div id="app">
@@ -202,7 +215,30 @@ var UPG=[{k:'shelf',n:'넓은 진열대',d:'진열 6마리 → 9마리',p:3000},
 var S=load();
 function load(){var d={day:0,stars:[],wallet:0,upg:{}};try{var j=JSON.parse(localStorage.getItem('bung.story'));if(j&&typeof j.day==='number'){d.day=j.day;d.stars=j.stars||[];d.wallet=j.wallet||0;d.upg=j.upg||{}}}catch(e){}return d}
 function save(){try{localStorage.setItem('bung.story',JSON.stringify(S))}catch(e){}}
-function fig(w){return '<span class="fig" style="--c:'+WHO[w].c+'"></span>'}
+var K='stroke="#2a211c" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"';
+var LOOK={
+ kid:{scarf:'#3f9b57',top:'<path d="M11 23q0-17 19-17t19 17z" fill="#e2574c" '+K+'/><rect x="9" y="20" width="42" height="7" rx="3.5" fill="#fff" '+K+'/><circle cx="30" cy="5" r="4.5" fill="#fff" '+K+'/>'},
+ worker:{scarf:'',top:'<path d="M11 25q-1-19 19-19t19 19q-8-9-19-9t-19 9z" fill="#2a211c"/><g fill="none" '+K+'><circle cx="22.5" cy="28" r="5.5"/><circle cx="37.5" cy="28" r="5.5"/><path d="M28 28h4"/></g>',
+   body:'<path d="M22 52l8 9 8-9" fill="#fff" '+K+'/><path d="M28 58h4l-1 5 2.5 12-3.5 4-3.5-4 2.5-12z" fill="#c7392c" '+K+'/>'},
+ grandpa:{scarf:'#b9562f',top:'<path d="M9 21q3-14 21-14t20 10l7 4z" fill="#5d524b" '+K+'/><path d="M21 36q4.5-4 9 0q4.5-4 9 0q-4.5 4-9 1q-4.5 3-9-1z" fill="#f4f1ea" '+K+'/>',my:5},
+ student:{scarf:'',top:'<path d="M11 25q-1-19 19-19t19 19q-6-10-19-10t-19 10z" fill="#6b4a2f"/><path d="M10 29q-1-23 20-23t20 23" fill="none" stroke="#2a211c" stroke-width="4"/><rect x="5" y="24" width="8" height="13" rx="4" fill="#e3a21a" '+K+'/><rect x="47" y="24" width="8" height="13" rx="4" fill="#e3a21a" '+K+'/>',
+   body:'<path d="M22 52q8 8 16 0" fill="none" '+K+'/><path d="M27 60v8M33 60v8" '+K+'/>'},
+ halmae:{scarf:'#e9c46a',top:'<circle cx="30" cy="6" r="6" fill="#cfcfd8" '+K+'/><path d="M11 25q-1-18 19-18t19 18q-8-8-19-8t-19 8z" fill="#cfcfd8" '+K+'/><g fill="none" '+K+'><circle cx="22.5" cy="28" r="5"/><circle cx="37.5" cy="28" r="5"/><path d="M27.5 28h5"/></g>'},
+ me:{scarf:'',top:'<path d="M11 23q0-17 19-17t19 17q-19-7-38 0z" fill="#fff" '+K+'/>',body:'<path d="M19 58h22v32H19z" fill="#fff" '+K+'/><path d="M19 58l4-8M41 58l-4-8" '+K+'/>'},
+ rival:{scarf:'',top:'<path d="M11 24q-1-18 19-18t19 18q-6-9-21-9q-10 0-17 9z" fill="#2a211c"/><path d="M14 24h32v6q0 4-6 4h-4q-4 0-6-4q-2 4-6 4h-4q-6 0-6-4z" fill="#111" '+K+'/>',body:'<path d="M22 52l8 9 8-9" fill="#fff" '+K+'/><path d="M26 61l4 4 4-4" fill="#c7392c" '+K+'/>'}
+};
+function charSvg(w,mood){
+  var c=WHO[w],L=LOOK[w],m=mood||0,y=L.my||0;
+  var mouth=m===0?'<path d="M24 '+(35+y)+'q6 6 12 0" fill="none" '+K+'/>':m===1?'<path d="M25 '+(37+y)+'h10" '+K+'/>':'<path d="M24 '+(39+y)+'q6-6 12 0" fill="none" '+K+'/>';
+  var brow=m===2?'<path d="M17 19l8 3M43 19l-8 3" '+K+'/>':'';
+  var cheek=m===0?'<circle cx="16.5" cy="33" r="3" fill="#f0a39a" opacity=".8"/><circle cx="43.5" cy="33" r="3" fill="#f0a39a" opacity=".8"/>':'';
+  return '<svg class="ch" viewBox="0 0 60 90" aria-hidden="true"><path d="M7 91V68q0-18 23-18t23 18v23z" fill="'+c.c+'" '+K+'/>'+(L.body||'')+
+    (L.scarf?'<path d="M14 49q16 9 32 0v8q-16 9-32 0z" fill="'+L.scarf+'" '+K+'/>':'')+
+    '<circle cx="30" cy="28" r="19" fill="#f6d7b8" '+K+'/>'+cheek+'<circle cx="22.5" cy="28" r="2.3" fill="#2a211c"/><circle cx="37.5" cy="28" r="2.3" fill="#2a211c"/>'+L.top+mouth+brow+'</svg>';
+}
+function fig(w){return '<span class="fig">'+charSvg(w,0)+'</span>'}
+function moodOf(c){var r=c.pat/c.max;return r>.6?0:r>.3?1:2}
+function bye(slot,c,ok){G.bye[slot]={who:c.who,ok:ok,until:performance.now()+700};setTimeout(function(){if(G&&G.on)renderCustomers()},760)}
 function talkHtml(L){return '<div class="talk">'+L.map(function(l){return '<p>'+fig(l[0])+'<span><b>'+WHO[l[0]].n+'</b>'+l[1]+'</span></p>'}).join('')+'</div>'}
 function starHtml(n){return '<p class="stars" aria-label="별 '+n+'개">'+'★'.repeat(n)+'<i>'+'★'.repeat(3-n)+'</i></p>'}
 function show(html,acts){ACT=acts;$('card').innerHTML=html;$('card').scrollTop=0;$('overlay').hidden=false}
@@ -330,7 +366,7 @@ function serve(f){ // 주문에 맞는 손님이 있으면 판매, 받은 금액
   if(left===0){
     var tip=Math.round(best.pat/best.max*3)*100;
     pay+=tip; G.served++;
-    G.cust[best.slot]=null; G.spawn[best.slot]=rnd(1.2,3)*G.cfg.spawn;
+    G.cust[best.slot]=null; G.spawn[best.slot]=rnd(1.2,3)*G.cfg.spawn; bye(best.slot,best,true);
     hint(tip?'손님이 팁 '+won(tip)+'을 주고 갔어요':'주문 완료! 감사합니다');
     beep(1180,.18,'triangle');
   }
@@ -343,7 +379,7 @@ function newCustomer(slot){
   total=Math.min(total,G.cfg.max);
   if(G.served+G.missed===0&&slot===0) total=1;
   for(var n=0;n<total;n++){var k=pick(G.cfg.fills);if(Object.keys(need).length>=2&&!need[k])k=Object.keys(need)[0];need[k]=(need[k]||0)+1}
-  var c={slot:slot,who:pick(CUST),need:need,order:JSON.parse(JSON.stringify(need)),max:(30+8*total)*G.patMul};
+  var c={slot:slot,fresh:true,who:pick(CUST),need:need,order:JSON.parse(JSON.stringify(need)),max:(30+8*total)*G.patMul};
   c.pat=c.max; G.cust[slot]=c;
   beep(880,.07,'sine',.04);
   // 진열대에 있는 붕어빵부터 판다
@@ -353,20 +389,26 @@ function newCustomer(slot){
   renderStock();renderCustomers();
 }
 function renderCustomers(){
-  var h='';
+  var h='',now=performance.now();
   for(var s=0;s<2;s++){
-    var c=G&&G.cust[s];
-    if(!c){h+='<div class="cust empty">손님 기다리는 중…</div>';continue}
-    h+='<div class="cust">'+fig(c.who)+'<div class="order">'+Object.keys(c.order).map(function(k){
+    var c=G&&G.cust[s],by=G&&G.bye&&G.bye[s];
+    if(!c){
+      h+=by&&by.until>now?'<div class="cust bye"><div class="who '+by.who+'">'+charSvg(by.who,by.ok?0:2)+'</div><div class="bub say">'+(by.ok?'잘 먹을게요!':'너무 늦어요…')+'</div></div>'
+        :'<div class="cust empty">손님 기다리는 중…</div>';
+      continue}
+    c.mood=moodOf(c);
+    h+='<div class="cust'+(c.fresh?' in':'')+'"><div class="who '+c.who+'" id="who'+s+'">'+charSvg(c.who,c.mood)+'</div><div class="bub"><div class="order">'+Object.keys(c.order).map(function(k){
       var got=c.order[k]-c.need[k];
       return '<span class="chip'+(c.need[k]===0?' done':'')+'" style="--c:'+FL[k].c+'"><i></i>'+FL[k].n+' <em>'+got+'/'+c.order[k]+'</em></span>';
-    }).join('')+'</div><span class="pat"><i id="pat'+s+'"></i></span></div>';
+    }).join('')+'</div><span class="pat"><i id="pat'+s+'"></i></span></div></div>';
+    c.fresh=false;
   }
   $('customers').innerHTML=h;
   updatePatience();
 }
 function updatePatience(){
-  for(var s=0;s<2;s++){var c=G.cust[s],el=$('pat'+s);if(c&&el){var r=Math.max(0,c.pat/c.max);el.style.transform='scaleX('+r.toFixed(3)+')';el.style.background=r<.3?'var(--bad)':r<.6?'var(--warn)':'var(--ok)'}}
+  for(var s=0;s<2;s++){var c=G.cust[s],el=$('pat'+s);if(c&&el){var r=Math.max(0,c.pat/c.max);el.style.transform='scaleX('+r.toFixed(3)+')';el.style.background=r<.3?'var(--bad)':r<.6?'var(--warn)':'var(--ok)';
+    var m=moodOf(c);if(m!==c.mood){c.mood=m;$('who'+s).innerHTML=charSvg(c.who,m)}}}
 }
 function renderStock(){
   $('stock').innerHTML=G&&G.stock.length?G.stock.map(function(f){return '<span class="sf" style="--c:'+FL[f.fl].c+'"><img src="'+IMG+'baked.jpg" alt=""><i></i></span>'}).join(''):'남는 붕어빵 자리';
@@ -395,7 +437,7 @@ function tick(now){
     var c=G.cust[s];
     if(c){
       c.pat-=dt;
-      if(c.pat<=0){G.cust[s]=null;G.spawn[s]=rnd(1.5,3)*G.cfg.spawn;G.missed++;changed=true;hint('손님이 기다리다 그냥 갔어요');beep(200,.2,'square',.03)}
+      if(c.pat<=0){bye(s,c,false);G.cust[s]=null;G.spawn[s]=rnd(1.5,3)*G.cfg.spawn;G.missed++;changed=true;hint('손님이 기다리다 그냥 갔어요');beep(200,.2,'square',.03)}
     }else{ G.spawn[s]-=dt; if(G.spawn[s]<=0&&G.t>6){newCustomer(s)} }
   }
   if(changed) renderCustomers(); else updatePatience();
@@ -406,7 +448,7 @@ function startDay(cfg,di){
   if(!actx){try{actx=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}
   if(actx&&actx.state==='suspended') actx.resume();
   var st=di!=null, u=st?S.upg:{};
-  G={on:true,cfg:cfg,di:st?di:-1,dur:cfg.time,t:cfg.time,money:0,sold:0,served:0,missed:0,perfect:0,burnt:0,sel:cfg.fills[0],stock:[],cust:[null,null],
+  G={on:true,cfg:cfg,di:st?di:-1,dur:cfg.time,t:cfg.time,money:0,sold:0,served:0,missed:0,perfect:0,burnt:0,sel:cfg.fills[0],stock:[],cust:[null,null],bye:[null,null],
      rate:RATE*(u.fire?1.2:1),price:PRICE+(u.bean?100:0),stockMax:u.shelf?9:STOCK_MAX,patMul:cfg.pat*(u.coupon?1.2:1),spawn:[.6,7*cfg.spawn],
      molds:[0,1,2,3].map(function(){return{st:'empty',fl:null,p:0,q1:null}})};
   $('overlay').hidden=true;
