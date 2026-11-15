@@ -45,7 +45,6 @@ button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 .customers{flex:none;display:grid;grid-template-columns:1fr 1fr;gap:8px;min-height:86px}
 .cust{position:relative;display:flex;gap:8px;align-items:flex-start;background:var(--paper);border-radius:3px;padding:7px 9px 12px;min-width:0;animation:pop .25s ease-out;box-shadow:0 3px 8px rgba(0,0,0,.35);transform:rotate(-1deg)}
 .cust:nth-child(2){transform:rotate(1.2deg)}
-.cust .tk{flex:none;font-family:var(--hand);font-size:20px;line-height:1;color:var(--awning);border:1.5px solid var(--awning);border-radius:3px;padding:2px 5px 3px;transform:rotate(-4deg)}
 .cust.empty{background:rgba(255,255,255,.28);box-shadow:none;border:2px dashed rgba(40,36,44,.35);color:var(--ink);align-items:center;justify-content:center;font-family:var(--hand);font-size:19px;animation:none}
 .order{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
 .chip{display:flex;align-items:center;gap:5px;font-weight:700;font-size:13px;line-height:1.2;white-space:nowrap}
@@ -89,7 +88,7 @@ button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 .stock{flex:none;display:flex;align-items:center;gap:8px;min-height:40px}
 .kraft{flex:none;font-family:var(--hand);font-size:19px;line-height:1;background:var(--kraft);padding:4px 9px 5px;border-radius:2px;box-shadow:0 1px 0 var(--kraft-edge);transform:rotate(-2deg)}
 #stock{flex:1;display:flex;gap:4px;align-items:center;min-height:36px;padding:3px 6px;border-radius:8px;background:rgba(255,255,255,.55);min-width:0;overflow:hidden;color:var(--ink);font-size:12px}
-#stock .sf{position:relative;flex:none;width:42px;height:28px;border-radius:4px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+#stock .sf{position:relative;flex:0 1 42px;min-width:0;width:42px;height:28px;border-radius:4px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.4)}
 #stock .sf img{width:100%;height:100%;object-fit:cover;display:block}
 #stock .sf i{position:absolute;right:2px;bottom:2px;width:11px;height:11px;border-radius:50%;background:var(--c);border:1.5px solid #fff}
 
@@ -103,7 +102,7 @@ button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 
 /* 시작·마감 화면 */
 .overlay{position:absolute;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding-block:20px;background:rgba(32,26,36,.72);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
-.card{width:100%;max-width:340px;background:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:20px 20px 18px;box-shadow:0 6px 0 var(--ink);text-align:center}
+.card{width:100%;max-width:340px;max-height:100%;overflow-y:auto;background:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:20px 20px 18px;box-shadow:0 6px 0 var(--ink);text-align:center}
 .card h2{margin:0 0 4px;font-family:var(--display);font-weight:900;font-size:30px;letter-spacing:-.03em;text-wrap:balance}
 .card .sub{margin:0 0 14px;font-family:var(--hand);font-size:22px;color:var(--awning);line-height:1.1}
 .card ol{margin:0 0 14px;padding:0;list-style:none;text-align:left;display:grid;gap:7px;counter-reset:s}
@@ -116,6 +115,29 @@ button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
 .cta{width:100%;padding:13px 16px 14px;border-radius:10px;background:var(--awning);color:var(--paper);font-family:var(--display);font-weight:900;font-size:19px;box-shadow:0 4px 0 #8e241b}
 .cta:active{transform:translateY(3px);box-shadow:0 1px 0 #8e241b}
 
+.mold.locked{opacity:.34;filter:grayscale(1)}
+.mold.locked .next{display:none}
+.fill-btn.locked{opacity:.3;filter:grayscale(1)}
+.hud .met b{color:var(--ok)}
+.fig{flex:none;position:relative;display:block;width:26px;height:34px}
+.fig::before{content:"";position:absolute;left:5px;top:0;width:16px;height:16px;border-radius:50%;background:#f3d2b3;border:1.5px solid var(--ink)}
+.fig::after{content:"";position:absolute;left:1px;bottom:0;width:24px;height:17px;border-radius:9px 9px 3px 3px;background:var(--c);border:1.5px solid var(--ink)}
+.talk{display:grid;gap:9px;margin:0 0 12px;text-align:left}
+.talk p{margin:0;display:grid;grid-template-columns:26px 1fr;gap:9px;align-items:start;line-height:1.45}
+.talk b{display:block;font-size:11px;color:var(--ink-soft)}
+.goal{margin:0 0 12px;padding:8px 10px;border-radius:8px;background:#f3ead6;font-weight:700;line-height:1.5}
+.goal small{display:block;font-weight:500;color:var(--ink-soft);font-size:12px}
+.stars{font-size:30px;letter-spacing:4px;color:var(--warn);margin:0 0 4px;line-height:1.1}
+.stars i{font-style:normal;color:#d9d2c2}
+.cta.alt{background:var(--paper);color:var(--ink);border:2px solid var(--ink);box-shadow:0 4px 0 var(--ink);margin-top:11px;font-size:16px;padding:9px 16px 10px}
+.cta.alt:active{box-shadow:0 1px 0 var(--ink)}
+.linkbtn{margin-top:12px;font-size:12px;color:var(--ink-soft);text-decoration:underline;padding:6px}
+.shop{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:7px;text-align:left}
+.shop li{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:7px 9px;border:1.5px solid var(--ink);border-radius:8px}
+.shop b{display:block}
+.shop small{display:block;color:var(--ink-soft);font-size:12px}
+.shop button{padding:7px 10px;border-radius:7px;background:var(--ink);color:var(--paper);font-weight:700;font-size:13px;white-space:nowrap}
+.shop button:disabled{opacity:.35}
 @keyframes pop{from{transform:scale(.85);opacity:0}}
 @keyframes flip{50%{transform:scaleY(.05)}}
 @keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
@@ -130,7 +152,7 @@ button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
   <header class="awning">
     <h1>붕어빵 포차</h1>
     <div class="hud">
-      <div><small>매출</small><b id="money">0원</b></div>
+      <div id="moneyBox"><small id="moneyLbl">매출</small><b id="money">0원</b></div>
       <div id="timeBox"><small>남은 시간</small><b id="time">2:00</b></div>
     </div>
   </header>
@@ -160,7 +182,30 @@ var RATE=0.15, MAXP=1.4, MINP=0.5, OK_LO=0.75, OK_HI=1.1, DAY=120, PRICE=700, ST
 var FISH='M8 40 C14 17,50 7,78 26 C88 32,97 29,113 13 C108 30,108 50,113 67 C97 51,88 48,78 54 C50 73,14 63,8 40Z';
 var DEFAULT_HINT='틀을 눌러서 반죽 → 속 → 반죽 → 뒤집기 → 꺼내기';
 var $=function(id){return document.getElementById(id)};
-var G=null, raf=0, last=0, hintTimer=0, actx=null;
+var G=null, raf=0, last=0, hintTimer=0, actx=null, ACT={};
+var WHO={halmae:{n:'할머니',c:'#8a6fa8'},me:{n:'나',c:'#d23b2e'},kid:{n:'초등학생',c:'#f2b632'},worker:{n:'회사원',c:'#3f5f8a'},grandpa:{n:'할아버지',c:'#6b7a4f'},student:{n:'대학생',c:'#3f9b57'},rival:{n:'옆 가게 사장',c:'#26222a'}};
+var CUST=['kid','worker','grandpa','student'];
+var DAYS=[
+ {t:'첫 장사',time:75,goal:3000,fills:['pat'],molds:2,pat:1.2,spawn:1,max:2,note:'틀 2개 · 팥',
+  talk:[['halmae','아이고, 허리를 삐끗했지 뭐니. 이번 겨울엔 네가 포차를 좀 맡아 다오.'],['me','붕어빵은 먹어만 봤는데… 일단 해 볼게요!'],['halmae','오늘은 팥만 굽거라. 눈금이 초록일 때 뒤집고, 또 초록일 때 꺼내면 된다.']]},
+ {t:'하굣길',time:90,goal:5000,fills:['pat','cream'],molds:3,pat:.95,spawn:1,max:2,note:'틀 3개 · 슈크림 추가',
+  talk:[['kid','할머니 붕어빵 어디 갔어요? 슈크림은 없어요?'],['me','…오늘부터 팔게!'],['halmae','틀 하나 더 달궈 놨다. 아이들은 오래 못 기다린단다.']]},
+ {t:'첫눈 오는 날',time:100,goal:7500,fills:['pat','cream','goguma'],molds:4,pat:.8,spawn:.9,max:3,note:'틀 4개 · 고구마 추가 · 손님이 빨리 떠남',
+  talk:[['worker','눈 오는 날엔 역시 붕어빵이죠. 고구마 맛도 있나요?'],['me','있습니다! (방금 만들었습니다)'],['halmae','추우면 손님 발걸음이 급해진다. 미리 구워 진열대에 올려 두렴.']]},
+ {t:'옆 골목 새 가게',time:110,goal:10000,fills:KEYS,molds:4,pat:.9,spawn:.65,max:3,note:'초코 추가 · 손님이 자주 옴',
+  talk:[['rival','요 옆에 프랜차이즈 붕어빵 가게 열었습니다. 잘 부탁드려요, 후후.'],['me','…초코로 맞불을 놓자.'],['halmae','맛으로 이기면 된다. 완벽하게 구운 건 100원 더 받는 거 알지?']]},
+ {t:'동네 겨울 축제',time:120,goal:13000,fills:KEYS,molds:4,pat:.9,spawn:.55,max:4,note:'단체 주문(최대 4마리) · 손님이 몰림',
+  talk:[['grandpa','축제 날엔 자네 할머니 붕어빵을 꼭 사 갔지. 식구가 많으니 넉넉히 주게.'],['me','오늘만 잘 넘기면 할머니도 다 나으신대요.'],['halmae','마지막 날이다. 네 붕어빵, 이제 내 것보다 낫더구나.']]}
+];
+var FREE={t:'자유 장사',time:DAY,goal:0,fills:KEYS,molds:4,pat:1,spawn:1,max:3};
+var UPG=[{k:'shelf',n:'넓은 진열대',d:'진열 6마리 → 9마리',p:3000},{k:'fire',n:'화력 강화',d:'굽는 속도가 20% 빨라짐',p:4000},{k:'coupon',n:'단골 쿠폰',d:'손님이 20% 더 오래 기다림',p:5000},{k:'bean',n:'통팥 앙금',d:'한 마리에 100원 더 받음',p:6000}];
+var S=load();
+function load(){var d={day:0,stars:[],wallet:0,upg:{}};try{var j=JSON.parse(localStorage.getItem('bung.story'));if(j&&typeof j.day==='number'){d.day=j.day;d.stars=j.stars||[];d.wallet=j.wallet||0;d.upg=j.upg||{}}}catch(e){}return d}
+function save(){try{localStorage.setItem('bung.story',JSON.stringify(S))}catch(e){}}
+function fig(w){return '<span class="fig" style="--c:'+WHO[w].c+'"></span>'}
+function talkHtml(L){return '<div class="talk">'+L.map(function(l){return '<p>'+fig(l[0])+'<span><b>'+WHO[l[0]].n+'</b>'+l[1]+'</span></p>'}).join('')+'</div>'}
+function starHtml(n){return '<p class="stars" aria-label="별 '+n+'개">'+'★'.repeat(n)+'<i>'+'★'.repeat(3-n)+'</i></p>'}
+function show(html,acts){ACT=acts;$('card').innerHTML=html;$('card').scrollTop=0;$('overlay').hidden=false}
 
 var IMG='img/bungeoppang/';
 function moldHtml(){
@@ -194,7 +239,7 @@ function buildPan(){
     '<span class="steam"></span><span class="gauge"><i></i></span><span class="next">반죽 붓기</span></button>';
   $('pan').innerHTML=h;
   $('pan').addEventListener('pointerdown',function(e){
-    var b=e.target.closest('.mold'); if(b&&G&&G.on){e.preventDefault();tapMold(+b.dataset.i)}
+    var b=e.target.closest('.mold'); if(b&&G&&G.on&&+b.dataset.i<G.cfg.molds){e.preventDefault();tapMold(+b.dataset.i)}
   });
 }
 function buildFillings(){
@@ -202,7 +247,7 @@ function buildFillings(){
     return '<button class="fill-btn" id="fill-'+k+'" data-k="'+k+'" aria-pressed="false" style="--x:'+FL[k].x+'"><span class="tub"></span><span class="lbl">'+FL[k].n+'</span></button>';
   }).join('');
   $('fillings').addEventListener('pointerdown',function(e){
-    var b=e.target.closest('.fill-btn'); if(b){selectFill(b.dataset.k);beep(520,.06,'triangle')}
+    var b=e.target.closest('.fill-btn'); if(b&&G.cfg.fills.indexOf(b.dataset.k)>=0){selectFill(b.dataset.k);beep(520,.06,'triangle')}
   });
 }
 function selectFill(k){
@@ -214,7 +259,7 @@ function selectFill(k){
 var NEXT={empty:'반죽 붓기',batter:'속 넣기',filled:'반죽 덮기'};
 function renderMold(i){
   var m=G.molds[i],el=$('mold'+i);
-  el.className='mold s-'+m.st+(m.p>=MAXP?' burnt':'');
+  el.className='mold s-'+m.st+(m.p>=MAXP?' burnt':'')+(i>=G.cfg.molds?' locked':'');
   if(m.fl) el.querySelector('.l-fill').src=IMG+'fill-'+m.fl+'.jpg';
   updateMoldLive(i);
 }
@@ -269,7 +314,7 @@ function finish(i,m){
   if(perfect) G.perfect++;
   var sold=serve({fl:fl,perfect:perfect});
   if(sold){floatText(i,'+'+won(sold)+(perfect?' 완벽!':''));beep(perfect?990:780,.12,'triangle')}
-  else if(G.stock.length<STOCK_MAX){G.stock.push({fl:fl,perfect:perfect});floatText(i,'진열대로');renderStock();beep(600,.08,'triangle')}
+  else if(G.stock.length<G.stockMax){G.stock.push({fl:fl,perfect:perfect});floatText(i,'진열대로');renderStock();beep(600,.08,'triangle')}
   else{floatText(i,'자리 없음',true);hint('진열대가 꽉 찼어요. 주문을 보고 구우세요')}
 }
 
@@ -279,13 +324,13 @@ function serve(f){ // 주문에 맞는 손님이 있으면 판매, 받은 금액
   G.cust.forEach(function(c){ if(c&&c.need[f.fl]>0&&(!best||c.pat<best.pat)) best=c });
   if(!best) return 0;
   best.need[f.fl]--;
-  var pay=PRICE+(f.perfect?100:0);
+  var pay=G.price+(f.perfect?100:0);
   G.sold++;
   var left=KEYS.reduce(function(s,k){return s+(best.need[k]||0)},0);
   if(left===0){
     var tip=Math.round(best.pat/best.max*3)*100;
     pay+=tip; G.served++;
-    G.cust[best.slot]=null; G.spawn[best.slot]=rnd(1.2,3);
+    G.cust[best.slot]=null; G.spawn[best.slot]=rnd(1.2,3)*G.cfg.spawn;
     hint(tip?'손님이 팁 '+won(tip)+'을 주고 갔어요':'주문 완료! 감사합니다');
     beep(1180,.18,'triangle');
   }
@@ -293,10 +338,12 @@ function serve(f){ // 주문에 맞는 손님이 있으면 판매, 받은 금액
   return pay;
 }
 function newCustomer(slot){
-  var late=G.t<DAY*.55, total=Math.random()<(late?.45:.2)?3:Math.random()<.5?2:1, need={};
+  var late=G.t<G.dur*.55, total=Math.random()<(late?.45:.2)?3:Math.random()<.5?2:1, need={};
+  if(G.cfg.max>=4&&late&&Math.random()<.35) total=4;
+  total=Math.min(total,G.cfg.max);
   if(G.served+G.missed===0&&slot===0) total=1;
-  for(var n=0;n<total;n++){var k=pick(KEYS);if(Object.keys(need).length>=2&&!need[k])k=Object.keys(need)[0];need[k]=(need[k]||0)+1}
-  var c={slot:slot,need:need,order:JSON.parse(JSON.stringify(need)),max:30+8*total};
+  for(var n=0;n<total;n++){var k=pick(G.cfg.fills);if(Object.keys(need).length>=2&&!need[k])k=Object.keys(need)[0];need[k]=(need[k]||0)+1}
+  var c={slot:slot,who:pick(CUST),need:need,order:JSON.parse(JSON.stringify(need)),max:(30+8*total)*G.patMul};
   c.pat=c.max; G.cust[slot]=c;
   beep(880,.07,'sine',.04);
   // 진열대에 있는 붕어빵부터 판다
@@ -310,7 +357,7 @@ function renderCustomers(){
   for(var s=0;s<2;s++){
     var c=G&&G.cust[s];
     if(!c){h+='<div class="cust empty">손님 기다리는 중…</div>';continue}
-    h+='<div class="cust"><b class="tk">주문</b><div class="order">'+Object.keys(c.order).map(function(k){
+    h+='<div class="cust">'+fig(c.who)+'<div class="order">'+Object.keys(c.order).map(function(k){
       var got=c.order[k]-c.need[k];
       return '<span class="chip'+(c.need[k]===0?' done':'')+'" style="--c:'+FL[k].c+'"><i></i>'+FL[k].n+' <em>'+got+'/'+c.order[k]+'</em></span>';
     }).join('')+'</div><span class="pat"><i id="pat'+s+'"></i></span></div>';
@@ -326,6 +373,8 @@ function renderStock(){
 }
 function renderHud(){
   $('money').textContent=won(G.money);
+  $('moneyLbl').textContent=G.cfg.goal?'목표 '+won(G.cfg.goal):'매출';
+  $('moneyBox').className=G.cfg.goal&&G.money>=G.cfg.goal?'met':'';
   var t=Math.max(0,Math.ceil(G.t));
   $('time').textContent=Math.floor(t/60)+':'+('0'+t%60).slice(-2);
   $('timeBox').className=t<=15?'low':'';
@@ -339,55 +388,98 @@ function tick(now){
   var sec=Math.ceil(G.t);
   G.t-=dt;
   for(var i=0;i<4;i++){var m=G.molds[i];
-    if(m.st==='side1'||m.st==='side2'){ if(m.p<MAXP){m.p=Math.min(MAXP,m.p+RATE*dt); if(m.p>=MAXP) beep(130,.2,'sawtooth',.04)} updateMoldLive(i) }
+    if(m.st==='side1'||m.st==='side2'){ if(m.p<MAXP){m.p=Math.min(MAXP,m.p+G.rate*dt); if(m.p>=MAXP) beep(130,.2,'sawtooth',.04)} updateMoldLive(i) }
   }
   var changed=false;
   for(var s=0;s<2;s++){
     var c=G.cust[s];
     if(c){
       c.pat-=dt;
-      if(c.pat<=0){G.cust[s]=null;G.spawn[s]=rnd(1.5,3);G.missed++;changed=true;hint('손님이 기다리다 그냥 갔어요');beep(200,.2,'square',.03)}
+      if(c.pat<=0){G.cust[s]=null;G.spawn[s]=rnd(1.5,3)*G.cfg.spawn;G.missed++;changed=true;hint('손님이 기다리다 그냥 갔어요');beep(200,.2,'square',.03)}
     }else{ G.spawn[s]-=dt; if(G.spawn[s]<=0&&G.t>6){newCustomer(s)} }
   }
   if(changed) renderCustomers(); else updatePatience();
   if(Math.ceil(G.t)!==sec) renderHud();
   if(G.t<=0) endDay();
 }
-function startDay(){
+function startDay(cfg,di){
   if(!actx){try{actx=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}
   if(actx&&actx.state==='suspended') actx.resume();
-  G={on:true,t:DAY,money:0,sold:0,served:0,missed:0,perfect:0,burnt:0,sel:'pat',stock:[],cust:[null,null],spawn:[.6,7],
+  var st=di!=null, u=st?S.upg:{};
+  G={on:true,cfg:cfg,di:st?di:-1,dur:cfg.time,t:cfg.time,money:0,sold:0,served:0,missed:0,perfect:0,burnt:0,sel:cfg.fills[0],stock:[],cust:[null,null],
+     rate:RATE*(u.fire?1.2:1),price:PRICE+(u.bean?100:0),stockMax:u.shelf?9:STOCK_MAX,patMul:cfg.pat*(u.coupon?1.2:1),spawn:[.6,7*cfg.spawn],
      molds:[0,1,2,3].map(function(){return{st:'empty',fl:null,p:0,q1:null}})};
   $('overlay').hidden=true;
-  selectFill('pat');
+  KEYS.forEach(function(k){var on=cfg.fills.indexOf(k)>=0,b=$('fill-'+k);b.classList.toggle('locked',!on);b.disabled=!on});
+  selectFill(G.sel);
   for(var i=0;i<4;i++) renderMold(i);
   renderHud();renderStock();renderCustomers();hint(DEFAULT_HINT,true);
   cancelAnimationFrame(raf);last=performance.now();raf=requestAnimationFrame(tick);
 }
+function statsHtml(extra){
+  return '<dl>'+(extra||'')+'<dt>판 붕어빵</dt><dd>'+G.sold+'마리</dd><dt>완벽하게 구운 것</dt><dd>'+G.perfect+'마리</dd><dt>태운 것</dt><dd>'+G.burnt+'마리</dd><dt>그냥 간 손님</dt><dd>'+G.missed+'명</dd>';
+}
 function endDay(){
   G.on=false;cancelAnimationFrame(raf);
+  if(G.di>=0) return storyResult();
   var best=0;
   try{best=+localStorage.getItem('bung.best')||0}catch(e){}
   var isNew=G.money>best;
   if(isNew){try{localStorage.setItem('bung.best',String(G.money))}catch(e){}}
-  $('card').innerHTML='<h2>오늘 장사 끝!</h2><p class="sub">'+(isNew&&G.money>0?'최고 매출을 새로 썼어요':G.money>=10000?'줄 서는 맛집이네요':'내일은 더 잘 구워 봐요')+'</p>'+
-    '<div class="big">'+won(G.money)+'</div>'+
-    '<dl><dt>판 붕어빵</dt><dd>'+G.sold+'마리</dd><dt>완벽하게 구운 것</dt><dd>'+G.perfect+'마리</dd><dt>태운 것</dt><dd>'+G.burnt+'마리</dd><dt>그냥 간 손님</dt><dd>'+G.missed+'명</dd><dt>최고 매출</dt><dd>'+won(Math.max(best,G.money))+'</dd></dl>'+
-    '<button class="cta" id="startBtn">다시 장사하기</button>';
-  $('overlay').hidden=false;
-  $('startBtn').addEventListener('click',startDay);
+  show('<h2>오늘 장사 끝!</h2><p class="sub">'+(isNew&&G.money>0?'최고 매출을 새로 썼어요':G.money>=10000?'줄 서는 맛집이네요':'내일은 더 잘 구워 봐요')+'</p>'+
+    '<div class="big">'+won(G.money)+'</div>'+statsHtml()+'<dt>최고 매출</dt><dd>'+won(Math.max(best,G.money))+'</dd></dl>'+
+    '<button class="cta" data-a="go">다시 장사하기</button><button class="cta alt" data-a="home">처음 화면</button>',
+    {go:function(){startDay(FREE)},home:title});
 }
-function intro(){
-  $('card').innerHTML='<h2>붕어빵 포차</h2><p class="sub">한 마리 700원 · 2분 장사</p>'+
-    '<ol><li><span>틀을 눌러 <b>반죽</b>을 붓습니다.</span></li><li><span>아래에서 <b>속 재료</b>를 고르고 틀을 누릅니다.</span></li><li><span>한 번 더 눌러 반죽으로 덮으면 굽기 시작합니다.</span></li><li><span>눈금이 <b>초록 구간</b>일 때 눌러 뒤집고, 다시 초록일 때 꺼냅니다.</span></li><li><span>손님 주문과 같은 맛이면 바로 팔립니다. 빨리 줄수록 팁이 붙어요.</span></li></ol>'+
-    '<button class="cta" id="startBtn">장사 시작</button><p class="mini">너무 오래 두면 새까맣게 타서 버려야 해요.</p>';
-  $('startBtn').addEventListener('click',startDay);
+function storyResult(){
+  var c=G.cfg,di=G.di,ok=G.money>=c.goal,st=!ok?0:G.money>=c.goal*1.6?3:G.money>=c.goal*1.3?2:1,lastDay=di===DAYS.length-1;
+  if(ok){S.stars[di]=Math.max(S.stars[di]||0,st);S.wallet+=G.money;if(S.day<=di)S.day=di+1;save()}
+  show('<h2>'+(ok?'목표 달성!':'목표 미달…')+'</h2><p class="sub">'+(di+1)+'일차 · '+c.t+'</p>'+starHtml(st)+
+    '<div class="big">'+won(G.money)+'</div>'+statsHtml('<dt>오늘 목표</dt><dd>'+won(c.goal)+'</dd>')+'</dl>'+
+    (ok?'<button class="cta" data-a="go">'+(lastDay?'이야기 마무리':'다음 날 준비')+'</button>':'<button class="cta" data-a="retry">다시 도전</button>')+
+    '<button class="cta alt" data-a="home">처음 화면</button>',
+    {go:function(){lastDay?ending():shop(di+1)},retry:function(){storyIntro(di)},home:title});
+  beep(ok?990:160,.25,ok?'triangle':'sawtooth',.05);
 }
+function shop(next){
+  if(UPG.every(function(u){return S.upg[u.k]})) return storyIntro(next);
+  show('<h2>장 보는 날</h2><p class="sub">모은 돈 '+won(S.wallet)+'</p><ul class="shop">'+UPG.map(function(u){
+      var has=S.upg[u.k];
+      return '<li><span><b>'+u.n+'</b><small>'+u.d+'</small></span><button data-a="buy" data-k="'+u.k+'"'+(has||S.wallet<u.p?' disabled':'')+'>'+(has?'구입함':won(u.p))+'</button></li>';
+    }).join('')+'</ul><button class="cta" data-a="go">'+(next+1)+'일차로</button>',
+    {buy:function(b){var u=UPG.filter(function(x){return x.k===b.dataset.k})[0];if(u&&!S.upg[u.k]&&S.wallet>=u.p){S.wallet-=u.p;S.upg[u.k]=1;save();beep(880,.12,'triangle');shop(next)}},
+     go:function(){storyIntro(next)}});
+}
+function storyIntro(di){
+  var c=DAYS[di];
+  show('<h2>'+(di+1)+'일차</h2><p class="sub">'+c.t+'</p>'+talkHtml(c.talk)+
+    '<p class="goal">오늘 목표: 매출 '+won(c.goal)+'<small>'+c.note+' · '+c.time+'초</small></p>'+
+    '<button class="cta" data-a="go">장사 시작</button><button class="cta alt" data-a="home">처음 화면</button>',
+    {go:function(){startDay(c,di)},home:title});
+}
+function ending(){
+  var tot=S.stars.reduce(function(a,b){return a+(b||0)},0);
+  show('<h2>겨울 장사 끝!</h2><p class="sub">별 '+tot+' / '+DAYS.length*3+'</p>'+
+    talkHtml([['halmae','허리가 다 나았다. 그런데 손님들이 네 붕어빵만 찾는구나.'],['me','그럼… 내년 겨울에도 제가 구울게요.'],['halmae',tot>=DAYS.length*3?'별을 다 모았구나. 이 포차는 이제 네 것이다.':'별을 다 모으면 포차를 물려주마. 다시 구워 보렴.']])+
+    '<button class="cta" data-a="free">자유 장사 (2분)</button><button class="cta alt" data-a="home">처음 화면</button>',
+    {free:function(){startDay(FREE)},home:title});
+}
+function title(){
+  var done=S.day>=DAYS.length, lbl=S.day===0?'이야기 시작':done?'마지막 이야기 보기':(S.day+1)+'일차 이어하기';
+  var days=S.day>0?'<p class="goal">'+DAYS.map(function(d,i){return (i+1)+'일 '+(S.stars[i]?'★'.repeat(S.stars[i]):'–')}).join(' · ')+'<small>모은 돈 '+won(S.wallet)+'</small></p>':'';
+  show('<h2>붕어빵 포차</h2><p class="sub">할머니의 겨울 포차 · 5일 이야기</p>'+
+    '<ol><li><span>틀을 눌러 <b>반죽</b> → <b>속 재료</b> → <b>반죽 덮기</b>.</span></li><li><span>눈금이 <b>초록</b>일 때 뒤집고, 다시 초록일 때 꺼냅니다.</span></li><li><span>주문과 같은 맛이면 바로 팔립니다. 빨리 줄수록 팁이 붙어요.</span></li></ol>'+days+
+    '<button class="cta" data-a="story">'+lbl+'</button><button class="cta alt" data-a="free">자유 장사 (2분)</button>'+
+    (S.day>0?'<button class="linkbtn" data-a="reset">이야기 처음부터 다시</button>':''),
+    {story:function(){done?ending():storyIntro(S.day)},free:function(){startDay(FREE)},
+     reset:function(b){if(b.dataset.sure){S={day:0,stars:[],wallet:0,upg:{}};save();title()}else{b.dataset.sure=1;b.textContent='정말 지울까요? 한 번 더 누르면 지워집니다'}}});
+}
+$('card').addEventListener('click',function(e){var b=e.target.closest('[data-a]');if(b&&ACT[b.dataset.a])ACT[b.dataset.a](b)});
 
 buildPan();buildFillings();
-G={on:false,t:DAY,money:0,sel:'pat',stock:[],cust:[null,null],spawn:[0,0],molds:[0,1,2,3].map(function(){return{st:'empty',fl:null,p:0}})};
+G={on:false,cfg:FREE,dur:DAY,t:DAY,money:0,sel:'pat',stock:[],cust:[null,null],spawn:[0,0],molds:[0,1,2,3].map(function(){return{st:'empty',fl:null,p:0}})};
 selectFill('pat');renderHud();renderStock();renderCustomers();$('hint').textContent=DEFAULT_HINT;
-intro();
+title();
 document.addEventListener('visibilitychange',function(){last=performance.now()});
 })();
 </script>
